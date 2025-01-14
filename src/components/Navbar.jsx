@@ -9,8 +9,8 @@ function Navbar() {
   return (
     <div className="w-full h-14 border-b-2 border-richblack-700">
       <nav className="flex h-full w-full px-2 sm:w-11/12  mx-auto gap-2 items-center justify-between sm:justify-around">
-        <div className="flex items-center gap-2">
-          <Link to={"/"} className="text-sm sm:text-xl font-serif md:text-3xl whitespace-nowrap font-bold">
+        <div className="flex items-center gap-1 sm:gap-2">
+          <Link to={"/"} className="text-sm sm:text-xl font-serif md:text-3xl whitespace-nowrap font-medium sm:font-bold">
             Personal Finance Tracker
           </Link>
         </div>
