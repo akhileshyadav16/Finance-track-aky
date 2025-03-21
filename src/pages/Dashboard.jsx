@@ -18,10 +18,8 @@ function Dashboard(){
                       `${process.env.REACT_APP_BASE_URL}/api/v1/get-expenses`,
                       {
                         method: "GET",
-                        headers: {
-                          "Content-Type": "application/json",
-                          Authorization: `Bearer ${token}`,
-                        },
+                        credentials: "include",
+                        headers: { "Content-Type": "application/json" },
                       }
                     );
             
@@ -77,9 +75,24 @@ function Dashboard(){
                         <RiPieChartLine className="w-8 h-8"/>
                         <div>Expenses by Category</div>
                     </div>
-                    <div className="w-full flex justify-center items-center mx-auto ">
-                        <MyPieChart groupedData={groupedData}/>
-                    </div>
+                    {
+                      expenses.length == 0 ? 
+                      (
+                        <div className="w-11/12 overflow-hidden p-4 space-y-3">
+                          <div className="h-48 w-full rounded-lg bg-gray-300 animate-pulse" />
+                          <div className="space-y-2">
+                            <div className="h-6 w-full rounded-md bg-gray-300 animate-pulse" />
+                            <div className="h-5 w-3/4 rounded-md bg-gray-300 animate-pulse" />
+                          </div>
+                        </div>
+                      )
+                       :
+                      (
+                        <div className="w-full flex justify-center items-center mx-auto ">
+                          <MyPieChart groupedData={groupedData}/>
+                        </div>
+                      )
+                    }
                 </div>
             </div>
             <div className="w-11/12 flex flex-col h-fit sm:w-4/5 px-4 sm:px-6 py-4 sm:py-6 gap-4 rounded-md mx-auto shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)] ">
@@ -87,7 +100,23 @@ function Dashboard(){
                 <IoIosTrendingUp />
                     Monthly Expenses
                 </div>
-                <MyBarChart expenses={expenses}/>
+                {
+                      expenses.length == 0 ? 
+                      (
+                        <div className="w-11/12 overflow-hidden p-4 space-y-3">
+                          <div className="h-48 w-full rounded-lg bg-gray-300 animate-pulse" />
+                          <div className="space-y-2">
+                            <div className="h-6 w-full rounded-md bg-gray-300 animate-pulse" />
+                            <div className="h-5 w-3/4 rounded-md bg-gray-300 animate-pulse" />
+                          </div>
+                        </div>
+                      )
+                       :
+                      (
+                        <MyBarChart expenses={expenses}/>
+                      )
+                }
+                
             </div>
             
         </div>
